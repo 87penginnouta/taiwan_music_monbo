@@ -1,0 +1,644 @@
+@charset "UTF-8";
+/*橘黃*/
+/*淺粉*/
+/*深灰*/
+/*深粉*/
+@import url("https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap");
+* {
+  font-family: 微軟正黑體;
+  /*border: 1px solid green;*/
+}
+
+body,
+html {
+  margin: 0;
+  /*font-family: arial;*/
+  height: 100vh;
+  background: #ffb336;
+  overflow-x: hidden;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.nav-mobile {
+  /*上面的bar*/
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #27232F;
+  color: #f3f7f7;
+  font-weight: 800;
+  padding: 0;
+  margin: 0;
+  cursor: auto;
+  font-size: 2vw;
+  list-style-type: none;
+  z-index: 999999;
+  box-shadow: 0 5px 5px -5px #333;
+}
+.nav-mobile:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.nav-mobile svg {
+  /*hamburger*/
+  height: 58px;
+  width: 90px;
+  padding: 9px;
+}
+.nav-mobile svg path {
+  fill: #f3f7f7;
+}
+.nav-mobile svg.icon-close {
+  display: none;
+  padding: 15px;
+}
+.nav-mobile li {
+  /*bar墊*/
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  float: left;
+}
+.nav-mobile li a {
+  /*menu字*/
+  display: block;
+  color: #f3f7f7;
+  font-weight: 800;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+.nav-mobile li a:hover {
+  color: #f3f7f7;
+  font-weight: 900;
+}
+.nav-mobile .menu-button {
+  /*menu動畫+背景變黑*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+  display: block;
+}
+.nav-mobile .menu-button:after {
+  opacity: 0;
+  top: 60px;
+  content: "";
+  width: 100vw;
+  display: block;
+  position: fixed;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+  pointer-events: none;
+  transition: opacity 0.2s cubic-bezier(0, 0, 0.3, 1);
+  transition-delay: 0.1s;
+}
+.nav-mobile #menu-toggle {
+  display: none;
+}
+.nav-mobile #menu-toggle.active ~ .menu-button .icon-close, .nav-mobile #menu-toggle:checked ~ .menu-button .icon-close {
+  display: block;
+}
+.nav-mobile #menu-toggle.active ~ .menu-button .icon-open, .nav-mobile #menu-toggle:checked ~ .menu-button .icon-open {
+  display: none;
+}
+.nav-mobile #menu-toggle.active ~ .menu-button:after, .nav-mobile #menu-toggle:checked ~ .menu-button:after {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.3s cubic-bezier(0, 0, 0.3, 1);
+}
+.nav-mobile #menu-toggle.active ~ .menu-sidebar, .nav-mobile #menu-toggle:checked ~ .menu-sidebar {
+  transform: translateX(0);
+  transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
+}
+.nav-mobile .menu-container {
+  /*hamburger的位置*/
+  width: 65px;
+  float: left;
+  cursor: pointer;
+  position: absolute;
+}
+.nav-mobile .menu-container .menu-sidebar {
+  /*menu那排*/
+  box-shadow: 5px 0 5px -5px #333;
+  display: block;
+  width: 65vw;
+  bottom: 0;
+  background: #27232F;
+  color: #f3f7f7;
+  position: fixed;
+  z-index: 9999999;
+  transform: translateX(-405px);
+  transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
+  top: 60px;
+  list-style-type: none;
+  padding: 0;
+  max-width: 400px;
+  /*.arrow {
+    position: absolute;
+    line-height: 50px;
+    font-size: 32px;
+    color: #555;
+    top: 0;
+    z-index: 0;
+    &.left {
+      left: 25px;
+    }
+    &.right {
+      right: 25px;
+    }
+  }*/
+}
+.nav-mobile .menu-container .menu-sidebar li {
+  height: 55px;
+  line-height: 55px;
+  font-size: 16px;
+  text-align: left;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 20px;
+  /*.menu-sub {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    overflow: hidden;
+    background: white;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0, 0, 0.3, 1);
+    border-left: 1px solid #ccc;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    z-index: 2;
+    max-width: 400px;
+    li {
+      overflow: hidden;
+    }
+    .menu-sub-title {
+      padding-left: 50px;
+    }
+  }*/
+  /* .submenu-label {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }*/
+  /*.submenu-toggle {
+    display: none;
+    &.active ~ .menu-sub,
+    &:checked ~ .menu-sub {
+      width: 65vw;
+      visibility: visible;
+      z-index: 1;
+      transition: width 0.35s cubic-bezier(0, 0, 0.3, 1);
+    }
+  }*/
+}
+.nav-mobile .menu-container .menu-sidebar li:hover {
+  background: #ffb336;
+}
+
+.container {
+  display: flex;
+}
+
+/*---主標題區塊---*/
+.bg {
+  /*color: $black;*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #f3f7f7;
+  width: 100vw;
+  height: 100vh;
+  z-index: 20;
+  overflow-x: hidden;
+}
+
+.name {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  height: 20vh;
+  left: 10vw;
+  top: 20%;
+  font-size: 5.5vw;
+  letter-spacing: 1vw;
+  color: #ffb336;
+  font-weight: 800;
+}
+
+.na {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  /*text-align:center;*/
+  width: 40vw;
+  height: 20vh;
+  left: 10.5vw;
+  top: 35vh;
+  font-size: 2vw;
+  letter-spacing: 0.5vw;
+  color: #666666;
+  font-weight: 800;
+  opacity: 0.25;
+}
+
+.num {
+  position: absolute;
+  /*display: flex;
+  justify-content: center;
+  align-items: center;*/
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  height: 40vh;
+  /*padding-top:50vh;
+  padding-left:11vh;*/
+  top: 55vh;
+  left: 11vw;
+  color: #27232F;
+  font-size: 1vw;
+  letter-spacing: 0.5vw;
+  line-height: 2vw;
+  font-weight: 800;
+}
+
+.lefttt {
+  position: absolute;
+  width: 40vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  background: #27232F;
+}
+
+.play {
+  position: absolute;
+  background: transparent;
+  width: 12vh;
+  height: 12vh;
+  border-radius: 50%;
+  top: 75vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0vw 1vw 3vw rgba(0, 0, 0, 0.5);
+  border: 0.5vh solid #ffb336;
+  cursor: pointer;
+  animation: shoo 2s infinite ease-in-out;
+}
+
+.pp {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  top: 40%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  /*box-shadow:0vw 1vw 3vw rgba(0,0,0,0.5);*/
+  border: none;
+  cursor: pointer;
+  /*background:$black;*/
+}
+
+.pp a {
+  text-decoration: none;
+  font-size: 13.5vh;
+  /*text-align:center;*/
+  line-height: 13.5vh;
+  opacity: 0;
+}
+
+.ppp {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 50%;
+  left: 55%;
+  background: transparent;
+  border-bottom: 2vw solid #ffb336;
+  border-left: 1vw solid transparent;
+  border-right: 1vw solid transparent;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.ppppp {
+  position: absolute;
+  width: 0;
+  height: 0;
+  background: transparent;
+  border-bottom: 2vw solid #f3f7f7;
+  border-left: 1vw solid transparent;
+  border-right: 1vw solid transparent;
+  top: 75vh;
+}
+
+.ppppp.p1 {
+  transform: translate(-50%, -50%) rotate(90deg);
+  left: 70%;
+}
+
+.ppppp.p2 {
+  transform: translate(-50%, -50%) rotate(90deg);
+  left: 75%;
+}
+
+.ppppp.p3 {
+  transform: translate(-50%, -50%) rotate(270deg);
+  left: 30%;
+}
+
+.ppppp.p4 {
+  transform: translate(-50%, -50%) rotate(270deg);
+  left: 25%;
+}
+
+.song_name {
+  position: absolute;
+  width: 10%;
+  height: 5%;
+  top: 95vh;
+  color: #f3f7f7;
+  font-size: 1.2vw;
+  font-weight: 600;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.song_name.n1 {
+  left: 5.5vw;
+}
+
+.song_name.n2 {
+  left: 34vw;
+}
+
+.song_bar {
+  position: absolute;
+  width: 80%;
+  height: 0.5vh;
+  border-radius: 0.5vh;
+  top: 90%;
+  left: 50%;
+  background: #f3f7f7;
+  opacity: 0.75;
+  transform: translate(-50%, -50%);
+}
+
+.song_bar:before {
+  content: "";
+  position: absolute;
+  width: 1.5vh;
+  height: 1.5vh;
+  background: #ffb336;
+  border-radius: 50%;
+  top: 50%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+}
+
+.ccc {
+  position: absolute;
+  width: 100vh;
+  height: 100vh;
+  background: #27232F;
+  top: -45vh;
+  left: 50vw;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  animation: ro 5s infinite linear;
+}
+
+.ccc_shadow {
+  position: absolute;
+  width: 100vh;
+  height: 100vh;
+  background: #27232F;
+  top: -45vh;
+  left: 50vw;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0vw 2vh 3vh rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.cir1 {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  border: 0.25vw solid #333333;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cir2 {
+  position: absolute;
+  width: 88%;
+  height: 88%;
+  border: 0.25vw solid #333333;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cir3 {
+  position: absolute;
+  width: 86%;
+  height: 86%;
+  border: 0.25vw solid #333333;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cir4 {
+  position: absolute;
+  width: 84%;
+  height: 84%;
+  border: 0.25vw solid #333333;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cir5 {
+  position: absolute;
+  width: 82%;
+  height: 82%;
+  border: 0.25vw solid #333333;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hole {
+  position: absolute;
+  width: 36%;
+  height: 36%;
+  border: 0.5vw solid #333333;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  background: #333333;
+  transform: translate(-50%, -50%);
+}
+
+.hhh {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  background: #ffb336;
+  opacity: 0.75;
+  transform: translate(-50%, -50%);
+}
+
+.light {
+  position: absolute;
+  width: 50%;
+  height: 10%;
+  top: 50%;
+  left: 25%;
+  background: #f3f7f7;
+  transform: translate(-50%, -50%);
+  opacity: 0.05;
+}
+
+/*---動畫---*/
+@keyframes ro {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes shoo {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  30% {
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+/*---rwd---*/
+@media (max-width: 600px) {
+  .nav-mobile {
+    font-size: 5vw;
+  }
+
+  .bg {
+    height: 100vh;
+  }
+
+  .ccc {
+    top: -50vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .ccc_shadow {
+    top: -50vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .lefttt {
+    width: 100vw;
+    height: 24vh;
+    top: 76vh;
+  }
+
+  .name {
+    font-size: 10vw;
+    top: 30vh;
+  }
+
+  .na {
+    font-size: 3vw;
+    top: 25vh;
+  }
+
+  .num {
+    font-size: 2.5vw;
+    line-height: 4vw;
+    top: 45vh;
+  }
+
+  .song_name {
+    font-size: 2vw;
+    top: 85%;
+  }
+
+  .song_name.n1 {
+    left: 10vw;
+  }
+
+  .song_name.n2 {
+    left: 90vw;
+  }
+
+  .song_bar {
+    top: 85%;
+    width: 70vw;
+  }
+
+  .play {
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: sho 2s infinite ease-in-out;
+  }
+
+  .ppp {
+    border-bottom: 4vw solid #ffb336;
+    border-left: 2vw solid transparent;
+    border-right: 2vw solid transparent;
+  }
+
+  .ppppp {
+    top: 40%;
+    transform: translate(-50%, -50%);
+    border-bottom: 4vw solid #f3f7f7;
+    border-left: 2vw solid transparent;
+    border-right: 2vw solid transparent;
+  }
+}
+/*---rwd動畫---*/
+@keyframes sho {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  30% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
